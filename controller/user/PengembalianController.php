@@ -1,23 +1,22 @@
 <?php
-require_once "model/user/pengembalian.php";
+require_once "model/PengembalianModel.php";
 
 class PengembalianController {
 
-    private $conn;
+    private $model;
 
-    public function __construct(PDO $conn){
-        $this->conn = $conn;
+    public function __construct(PDO $conn) {
+        $this->model = new PengembalianModel($conn);
     }
 
     // ============================
-    // TAMPILKAN DAFTAR PENGEMBALIAN USER
+    // RIWAYAT PENGEMBALIAN USER
     // ============================
     public function index() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        // Pastikan user login
         if (!isset($_SESSION['id_anggota'])) {
             header("Location: indexUser.php?page=login");
             exit;
@@ -25,18 +24,17 @@ class PengembalianController {
 
         $id_anggota = $_SESSION['id_anggota'];
 
-        // Ambil data pengembalian user dari model
-        $pengembalian = Pengembalian::getAllByUser($this->conn, $id_anggota);
+        // 🔥 AMBIL DARI VIEW
+        $pengembalian = $this->model->getAllByUser($id_anggota);
 
-        // Kirimkan variabel ke view melalui layout
         $content = "pengembalian.php";
-        include __DIR__ . '/../../view/user/layout.php';
+        include __DIR__ . "/../../view/user/layout.php";
     }
 
     // ============================
-    // PROSES PENGEMBALIAN BUKU
+    // PROSES PENGEMBALIAN
     // ============================
-    public function kembalikan($id_peminjaman, $id_buku) {
+    public function kembalikan($id_peminjaman) {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -46,13 +44,9 @@ class PengembalianController {
             exit;
         }
 
-        // Proses pengembalian
-        Pengembalian::insertReturn($this->conn, $id_peminjaman);
-        Pengembalian::updatePeminjaman($this->conn, $id_peminjaman);
-        Pengembalian::tambahStok($this->conn, $id_buku);
+        $this->model->tambah($id_peminjaman);
 
-        header("Location: indexUser.php?page=pengembalian&msg=success");
+        header("Location: indexUser.php?page=pengembalian");
         exit;
     }
 }
-?>

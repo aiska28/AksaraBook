@@ -68,14 +68,14 @@ switch($page){
         $controller->index();
         break;
 
-    /* =============================
+   /* =============================
        PENGEMBALIAN
     ============================= */
     case 'pengembalian':
-        require_once "controller/user/PengembalianController.php";
-        $controller = new PengembalianController($conn);
-        $controller->index();
-        break;
+    require_once "controller/user/PengembalianController.php";
+    $controller = new PengembalianController($conn);
+    $controller->index();
+    break;
 
     /* =============================
        PINJAM BUKU
