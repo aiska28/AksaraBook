@@ -4,7 +4,7 @@ class Database {
     private $port = "5432";
     private $dbname = "perpustakaan_final";
     private $user = "postgres";
-    private $password = "aiska284";
+    private $password = "nauraPostgreSQL";
 
     public $conn;
 

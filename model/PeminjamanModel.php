@@ -59,39 +59,54 @@ class PeminjamanModel {
        SELESAIKAN PEMINJAMAN
     ============================ */
     public static function selesaiPinjam($conn, $id) {
-        // 1. Ambil data peminjaman
-        $sql = "SELECT id_anggota, id_buku FROM peminjaman WHERE id_peminjaman = :id";
+
+        $sql = "
+            SELECT p.*, b.id_buku
+            FROM peminjaman p
+            JOIN buku b ON p.id_buku = b.id_buku
+            WHERE p.id_peminjaman = :id
+        ";
         $stmt = $conn->prepare($sql);
         $stmt->execute([':id' => $id]);
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        $p = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$data) return false;
+        if (!$p) return false;
 
-        $idBuku = $data['id_buku'];
+        // cek telat
+        $isTelat = date('Y-m-d') > $p['batas_peminjaman'];
+        $denda = $isTelat
+            ? self::getDenda($conn, date('Y-m-d'), $p['batas_peminjaman'])
+            : 0;
 
-        // 2. Masukkan ke tabel pengembalian
-        $sql_insert = "
-            INSERT INTO pengembalian (id_peminjaman, tanggal_pengembalian, keterangan)
-            VALUES (:id, CURRENT_DATE, 'Dikembalikan tepat waktu')
+        // insert pengembalian
+        $sql = "
+            INSERT INTO pengembalian 
+            (id_peminjaman, tanggal_pengembalian, denda, keterangan)
+            VALUES (:id, CURRENT_DATE, :denda, :ket)
         ";
-        $stmt_insert = $conn->prepare($sql_insert);
-        $stmt_insert->execute([':id' => $id]);
+        $conn->prepare($sql)->execute([
+            ':id' => $id,
+            ':denda' => $denda,
+            ':ket' => $isTelat ? ' Terlambat' : 'Tepat Waktu'
+        ]);
 
-        // 3. Update status peminjaman
-        $sql_update = "
+        // update peminjaman
+        $conn->prepare("
             UPDATE peminjaman 
-            SET status_peminjaman = 'dikembalikan' 
+            SET status_peminjaman = 'dikembalikan', denda = :denda
             WHERE id_peminjaman = :id
-        ";
-        $stmt_update = $conn->prepare($sql_update);
-        $stmt_update->execute([':id' => $id]);
+        ")->execute([
+            ':id' => $id,
+            ':denda' => $denda
+        ]);
 
-        // 4. Update stok buku
-        $sql_stok = "UPDATE buku SET stok = stok + 1 WHERE id_buku = :idBuku";
-        $stmt_stok = $conn->prepare($sql_stok);
-        $stmt_stok->execute([':idBuku' => $idBuku]);
+        // update stok buku
+        $conn->prepare("
+            UPDATE buku SET stok = stok + 1 WHERE id_buku = :id_buku
+        ")->execute([
+            ':id_buku' => $p['id_buku']
+        ]);
 
         return true;
     }
-
 }

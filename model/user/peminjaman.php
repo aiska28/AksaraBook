@@ -9,9 +9,7 @@ class peminjaman {
     public function getConn() {
         return $this->conn;
     }
-
-
-
+    
     /* ============================
        AMBIL PEMINJAMAN BERDASARKAN USER
     ============================ */

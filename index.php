@@ -32,7 +32,7 @@ switch ($page) {
         // Statistik
         $jumlah_koleksi   = (int) $conn->query("SELECT COUNT(*) FROM buku")->fetchColumn();
         $jumlah_dipinjam  = (int) $conn->query("SELECT COUNT(*) FROM peminjaman")->fetchColumn();
-        $total_denda      = (float) $conn->query("SELECT COALESCE(SUM(denda),0) FROM peminjaman")->fetchColumn();
+        $total_denda     = (float) $conn->query("SELECT total_denda_bulan_ini FROM v_total_denda_bulan_ini")->fetchColumn();
         $nama_user        = $_SESSION['user'] ?? 'Admin';
         $periode          = $_GET['periode'] ?? 'minggu';
 
@@ -46,20 +46,47 @@ switch ($page) {
         // Line chart
         $line_labels = [];
         $line_values = [];
+
+       switch($periode) {
+            case 'minggu':
+                $groupBy = "EXTRACT(WEEK FROM tanggal_peminjaman)";
+                $labelPrefix = "Minggu ";
+                break;
+            case 'bulan':
+                $groupBy = "EXTRACT(MONTH FROM tanggal_peminjaman)";
+                $labelPrefix = "Bulan ";
+                break;
+            case 'tahun':
+                $groupBy = "EXTRACT(YEAR FROM tanggal_peminjaman)";
+                $labelPrefix = "Tahun ";
+                break;
+            default:
+                $groupBy = "EXTRACT(WEEK FROM tanggal_peminjaman)";
+                $labelPrefix = "Minggu ";
+        }
+
+        // Ambil data dari database
         $stmt = $conn->query("
-            SELECT EXTRACT(MONTH FROM tanggal_peminjaman) AS bulan, COUNT(*) AS jumlah
+            SELECT $groupBy AS periode, COUNT(*) AS jumlah
             FROM peminjaman
-            GROUP BY bulan ORDER BY bulan
+            GROUP BY $groupBy
+            ORDER BY $groupBy ASC
         ");
+
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $line_labels[] = "Bulan " . $row['bulan'];
+            $line_labels[] = $labelPrefix . $row['periode'];
             $line_values[] = $row['jumlah'];
         }
 
         // Bar chart
         $grafik_labels = [];
         $grafik_values = [];
-        $stmt = $conn->query("SELECT judul, total_peminjaman FROM mv_laporan_peminjaman_buku LIMIT 10");
+        $stmt = $conn->query("
+            SELECT judul, jumlah_pinjam AS total_peminjaman
+            FROM v_denda_per_buku
+            ORDER BY jumlah_pinjam DESC
+            LIMIT 10
+        ");
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             $grafik_labels[] = $row['judul'];
             $grafik_values[] = $row['total_peminjaman'];
