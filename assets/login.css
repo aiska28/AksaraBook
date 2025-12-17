@@ -1,0 +1,133 @@
+/* ====== GLOBAL ====== */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #F5F3F0;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+    width: 100%;
+    background: linear-gradient(90deg, #4E342E, #6D4C41);
+    color: white;
+    padding: 18px 20px;
+    font-size: 22px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* ====== LOGIN CONTAINER ====== */
+.container-auth {
+    max-width: 900px;
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ====== LEFT BOX ====== */
+.box-left {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.box-left img {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.box-left h2 {
+    font-size: 22px;
+    color: #4E342E;
+    margin-bottom: 5px;
+}
+
+.box-left p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ====== RIGHT BOX ====== */
+.box-right {
+    flex: 1;
+    background: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.box-right h3 {
+    text-align: center;
+    color: #4E342E;
+    margin-bottom: 18px;
+}
+
+.input-box {
+    margin-bottom: 15px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: .2s;
+}
+
+.input-box input:focus {
+    border-color: #6D4C41;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #4E342E;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.btn:hover {
+    background: #6D4C41;
+}
+
+/* ====== LINK BAWAH ====== */
+.link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.link a {
+    color: #4E342E;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.alert {
+    background: #ffdad6;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: center;
+    color: #8a1d1d;
+    margin-bottom: 12px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+    .container-auth {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

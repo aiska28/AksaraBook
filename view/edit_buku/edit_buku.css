@@ -1,0 +1,115 @@
+/* ===============================
+   GLOBAL STYLE
+==================================*/
+body {
+    font-family: "Poppins", sans-serif;
+    background: #4d3c2b;
+    margin: 0;
+    padding: 0;
+}
+
+/* Tombol Kembali */
+.btn-back {
+    display: inline-block;
+    margin: 20px 30px;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #8b6942;
+    font-weight: 600;
+    border: 2px solid #8b6942;
+    transition: .2s;
+}
+
+.btn-back:hover {
+    background: #f2e9dd;
+}
+
+/* ===============================
+   CARD CONTENT BOX
+==================================*/
+.content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+h2 {
+    text-align: center;
+    color: #6c4b2f;
+    margin-bottom: 25px;
+}
+
+/* ===============================
+   FORM INPUT STYLE
+==================================*/
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-weight: 600;
+    color: #4d3c2b;
+    margin-bottom: 3px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+select {
+    padding: 12px;
+    border-radius: 12px;
+    border: 2px solid #c9b9a9;
+    background: #faf8f5;
+    font-size: 14px;
+    transition: .2s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #8b6942;
+    background: white;
+}
+
+/* ===============================
+   BUTTON STYLE
+==================================*/
+.btn {
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn.edit {
+    background: #8b6942;
+    color: white;
+    border: none;
+    transition: .2s;
+}
+
+.btn.edit:hover {
+    background: #6f5233;
+}
+
+/* ===============================
+   RESPONSIVE
+==================================*/
+@media (max-width: 600px) {
+    .content {
+        width: 90% !important;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    input, select {
+        font-size: 13px;
+    }
+}

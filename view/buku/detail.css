@@ -1,0 +1,97 @@
+/* PALETTE */
+:root {
+    --coklat-tua: #5d3a1a;
+    --coklat: #8d6e53;
+    --coklat-muda: #d9c7b2;
+    --cream: #f5eee6;
+    --putih: #ffffff;
+}
+
+/* BODY */
+body {
+    background-image: url(img/landing4.jpg);
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+}
+
+/* LAYOUT */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255, 255, 255, 0.75);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.judul {
+    text-align: center;
+    color: var(--coklat-tua);
+    margin-bottom: 20px;
+}
+
+/* CONTENT FLEX */
+.content {
+    display: flex;
+    gap: 25px;
+}
+
+/* COVER */
+.cover-box img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* DETAIL */
+.detail-box {
+    flex: 1;
+    font-size: 16px;
+}
+
+.detail-box p {
+    margin: 8px 0;
+}
+
+/* STATUS */
+.status {
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+}
+
+.status.tersedia {
+    background: var(--coklat);
+}
+
+.status.dipinjam {
+    background: #dc3545;
+}
+
+/* BUTTONS */
+.btn-group {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn.edit {
+    background: var(--coklat);
+}
+
+.btn.back {
+    background: gray;
+}

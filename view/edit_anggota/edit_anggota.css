@@ -1,0 +1,43 @@
+body {
+    background: #f5eee6;
+    font-family: Arial;
+}
+
+.form-edit {
+    width: 50%;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #d9c7b2;
+}
+
+label { 
+    font-weight: bold; 
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border-radius: 8px;
+    border: 1px solid #c9b8a3;
+}
+
+.btn-simpan {
+    background: #8d6e53;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-kembali {
+    background: #8d6e53;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}

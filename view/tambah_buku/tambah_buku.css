@@ -1,0 +1,70 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f5f4f1;
+}
+
+.btn-back {
+    display: inline-block;
+    margin: 20px 30px;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #8b6942;
+    font-weight: 600;
+    border: 2px solid #8b6942;
+    transition: .2s;
+}
+
+.btn-back:hover {
+    background: #f2e9dd;
+}
+
+.content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+h2 {
+    text-align: center;
+    color: #6c4b2f;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-weight: 600;
+}
+
+input, select {
+    padding: 12px;
+    border-radius: 12px;
+    border: 2px solid #c9b9a9;
+    background: #faf8f5;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #8b6942;
+}
+
+.btn.add {
+    background: #8b6942;
+    padding: 12px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.btn.add:hover {
+    background: #6f5233;
+}

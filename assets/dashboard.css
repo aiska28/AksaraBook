@@ -1,0 +1,333 @@
+/* ============================================================
+   GLOBAL STYLE
+============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body.page-dashboard {
+    background: #faf7e4;
+    color: #333;
+}
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+.navbar {
+    width: 100%;
+    background: #596e65;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .brand {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-name {
+    cursor: pointer;
+}
+
+.user-menu .dropdown {
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    min-width: 120px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.user-menu:hover .dropdown {
+    display: block;
+}
+
+.dropdown a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* ============================================================
+   LAYOUT
+============================================================ */
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 220px;
+    background: #a7c0a2;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: sticky;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 12px;
+    background: #d3e1c4;
+    border: none;
+    border-radius: 8px;
+    color: #01391a;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sidebar button:hover {
+    background: #b2bec3;
+    color: #2d3436;
+}
+
+.content {
+    flex: 1;
+    padding: 25px;
+}
+
+/* ============================================================
+   DASHBOARD STAT CARD
+============================================================ */
+.stat-area {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    flex: 1;
+    min-width: 240px;
+    border-radius: 12px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+}
+
+.bg-yellow { background: #feca57; }
+.bg-pink   { background: #ff7675; }
+.bg-green  { background: #55efc4; }
+
+.stat-label {
+    font-size: 14px;
+    color: #777;
+}
+
+.stat-num {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* ============================================================
+   TABLE
+============================================================ */
+.table-wrapper {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+table th {
+    background: #2d3436;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+tr.terlambat {
+    background: #ffdddd !important;
+}
+
+/* ============================================================
+   BOOK LIST
+============================================================ */
+.book-container {
+    padding: 20px;
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+
+.books {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book-card {
+    width: 220px;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cover-container img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.book-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.btn-detail {
+    padding: 10px;
+    background: #a7c0a3;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: auto;
+    display: block;
+}
+
+/* ============================================================
+   PAGINATION
+============================================================ */
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center; 
+}
+
+.pagination a {
+    padding: 10px 15px;
+    background: #72887b;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.pagination .active {
+    background: #2d3436;
+}
+
+/* ============================================================
+   POPUP
+============================================================ */
+.popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-box {
+    background: white;
+    padding: 25px;
+    width: 350px;
+    border-radius: 12px;
+    text-align: center;
+    animation: fadePopup 0.3s ease;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+}
+
+.popup-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@keyframes fadePopup {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+    .sidebar button {
+        flex: 1;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .books {
+        justify-content: center;
+    }
+    .book-card {
+        width: 90%;
+    }
+}
