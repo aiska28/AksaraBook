@@ -11,7 +11,7 @@ class KeterlambatanModel {
             FROM peminjaman p
             JOIN anggota a ON p.id_anggota = a.id_anggota
             JOIN buku b ON p.id_buku = b.id_buku
-            WHERE p.status_peminjaman = 'telat'
+            WHERE p.status_peminjaman = 'Terlambat'
             ORDER BY p.id_peminjaman
         ";
         $stmt = $conn->query($sql);
